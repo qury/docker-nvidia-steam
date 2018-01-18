@@ -13,8 +13,9 @@ Also please make sure that the nvidia driver you use to build your docker contai
 
 ## Installation
 
-  docker build -t NAMEOFYOURIMAGE .
-
+```
+ docker build -t NAMEOFYOURIMAGE .
+```
 ## Running it
 take a look at run.sh and amend the devices and directories as you like
 
