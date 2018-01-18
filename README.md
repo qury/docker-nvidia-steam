@@ -21,3 +21,7 @@ take a look at run.sh and amend the devices and directories as you like
 
 ## Todo
 * Find out what's the best way to enable pulseaudio (maybe via another container)
+* figure out how to make the steam install directory permanent
+
+### Issues
+* When i want to start up a stopped container, steam refuses to run. When i start up a new instance steam installs again, and i have to start from scratch (hence having a steam library mapped outside of the container so i do not have to install games inside again and again).
