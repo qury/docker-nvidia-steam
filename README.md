@@ -21,12 +21,12 @@ PULSE_FOLDER=/run/user/$USER/pulse
 
 if [ ! -d "$XDG_RUNTIME_DIR" ]; then
   mkdir -p $XDG_RUNTIME_DIR
-  chown -R $USER XDG_RUNTIME_DIR
+  chown  $USER XDG_RUNTIME_DIR
 fi
 
 if [ ! -d "$PULSE_FOLDER" ]; then
   mkdir -p $PULSE_FOLDER
-  chown -R $USER PULSE_FOLDER
+  chown  $USER PULSE_FOLDER
 fi
 
 ```
