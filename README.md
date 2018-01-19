@@ -12,25 +12,27 @@ The main reason for this container is my need to be able to play steam games on 
 Also please make sure that the nvidia driver you use to build your docker container is the same as the one installed on your host.
 
 ### Pulseaudio - Slackware64
-Your distribution might have everything configured for you, but Slackware does not use the variables XDG_RUNTIME_DIR and it also does not have the /run/user/ directories set up. So i created a file in /etc/profile.d to do it.
+Your distribution might have everything configured for you, but Slackware does not use the variables XDG_RUNTIME_DIR and it also does not have the /run/user/ directories set up. So i created a file in /etc/profile.d to do it.(/etc/profile.d/steam.sh)
 
 ```
 #!/bin/sh
-XDG_RUNTIME_DIR=/run/user/$USER
-PULSE_FOLDER=/run/user/$USER/pulse
+XDG_RUNTIME_DIR="/run/user/$USER"
+PULSE_FOLDER="/run/user/$USER/pulse"
 
-export $XDG_RUNTIME_DIR
-export $PULSE_FOLDER
+export XDG_RUNTIME_DIR
+export PULSE_FOLDER
 
 if [ ! -d "$XDG_RUNTIME_DIR" ]; then
   mkdir -p $XDG_RUNTIME_DIR
-  chown  $USER XDG_RUNTIME_DIR
 fi
+
+chown  $USER $XDG_RUNTIME_DIR
 
 if [ ! -d "$PULSE_FOLDER" ]; then
   mkdir -p $PULSE_FOLDER
-  chown  $USER PULSE_FOLDER
 fi
+
+chown  $USER $PULSE_FOLDER
 
 ```
 
