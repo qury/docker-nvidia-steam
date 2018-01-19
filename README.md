@@ -46,7 +46,6 @@ chown  $USER $PULSE_FOLDER
 take a look at run.sh and amend the devices and directories as you like
 
 ## Todo
-* Find out what's the best way to enable pulseaudio (maybe via another container)
 * figure out how to make the steam install directory permanent
 
 ### Issues
