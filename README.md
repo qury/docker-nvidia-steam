@@ -19,6 +19,9 @@ Your distribution might have everything configured for you, but Slackware does n
 XDG_RUNTIME_DIR=/run/user/$USER
 PULSE_FOLDER=/run/user/$USER/pulse
 
+export $XDG_RUNTIME_DIR
+export $PULSE_FOLDER
+
 if [ ! -d "$XDG_RUNTIME_DIR" ]; then
   mkdir -p $XDG_RUNTIME_DIR
   chown  $USER XDG_RUNTIME_DIR
