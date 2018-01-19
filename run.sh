@@ -1,4 +1,7 @@
 #!/bin/sh
+
+xhost +
+
 docker run  -ti \
 --name=steam_mine \
 --device  /dev/nvidia-modeset:/dev/nvidia-modeset  \
