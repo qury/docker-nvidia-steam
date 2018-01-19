@@ -11,4 +11,6 @@ docker run  -ti \
 -v /dev/shm:/dev/shm \
 -v ${HOME}/Downloads:/tmp/Downloads \
 --privileged=true \
+-v /run/user/${USER}/pulse:/run/user/1000/pulse \
+-e PULSE_SERVER=unix:/run/user/1000/pulse/native \
 -e DISPLAY=${DISPLAY} NAMEOFYOURIMAGE
