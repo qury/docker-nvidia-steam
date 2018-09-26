@@ -21,6 +21,7 @@ if [ "$XDG_RUNTIME_DIR" = "" ]; then
  XDG_RUNTIME_DIR=/run/user/$USER
  mkdir -p /run/user/$USER
  chown -R $USER /run/user/$USER
+ chmod 0700 run/user/$USER
 fi
 
 
