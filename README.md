@@ -41,7 +41,7 @@ export PULSE_FOLDER
 ## Installation
 
 ```
- docker build -t NAMEOFYOURIMAGE .
+ docker build --build-arg NVIDIA_VERSION=387.34 -t NAMEOFYOURIMAGE .
 ```
 ## Running it
 take a look at run.sh and amend the devices and directories as you like
