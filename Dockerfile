@@ -1,4 +1,6 @@
 FROM tianon/steam
+
+ARG NVIDIA_VERSION
 # my system has nvidia, so yours should too!
 RUN sudo apt-get update && sudo apt-get install -yq kmod mesa-utils
 
