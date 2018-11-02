@@ -10,7 +10,7 @@ RUN sudo apt-get update && sudo apt-get install -yq kmod mesa-utils
 # Check if nvidia version is defined
 RUN test -n "$NVIDIA_VERSION" || ( echo "Please provide nvidia driver version" && exit 1)
 #ADD NVIDIA-Linux-x86_64-387.34.run /tmp/NVIDIA-DRIVER.run
-ADD http://uk.download.nvidia.com/XFree86/Linux-x86_64/${NVIDIA_VERSION}/NVIDIA-Linux-x86_64-${NVIDIA_VERSION}.run /tmp/NVIDIA.run
+ADD http://uk.download.nvidia.com/XFree86/Linux-x86_64/${NVIDIA_VERSION}/NVIDIA-Linux-x86_64-${NVIDIA_VERSION}.run /tmp/NVIDIA-DRIVER.run
 RUN sudo sh /tmp/NVIDIA-DRIVER.run -a -N --ui=none --no-kernel-module
 RUN sudo rm /tmp/NVIDIA-DRIVER.run
 
