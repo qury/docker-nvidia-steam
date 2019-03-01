@@ -17,22 +17,24 @@ Your distribution might have everything configured for you, but Slackware does n
 ```
 #!/bin/sh
 
-if [ "$XDG_RUNTIME_DIR" = "" ]; then
- XDG_RUNTIME_DIR=/run/user/$USER
- mkdir -p /run/user/$USER
- chown -R $USER /run/user/$USER
- chmod 0700 run/user/$USER
-fi
-
-
-if [ "$PULSE_FOLDER" = "" ]; then
- PULSE_FOLDER=$XDG_RUNTIME_DIR/pulse
- mkdir -p $XDG_RUNTIME_DIR/pulse
- chown -R $USER $XDG_RUNTIME_DIR/pulse
-fi
+XDG_RUNTIME_DIR="/run/user/$USER"
+PULSE_FOLDER="/run/user/$USER/pulse"
 
 export XDG_RUNTIME_DIR
 export PULSE_FOLDER
+
+if [ ! -d "$XDG_RUNTIME_DIR" ]; then
+  mkdir -p $XDG_RUNTIME_DIR
+fi
+
+chown  $USER $XDG_RUNTIME_DIR
+
+if [ ! -d "$PULSE_FOLDER" ]; then
+  mkdir -p $PULSE_FOLDER
+fi
+
+chown  $USER $PULSE_FOLDER
+
 
 
 ```
