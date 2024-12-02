@@ -1,4 +1,13 @@
+FROM tianon/steam as intermediate
+ARG NVIDIA_VERSION=387.34
+
+RUN test -n "$NVIDIA_VERSION" || ( echo "Please provide nvidia driver version" && exit 1)
+#ADD NVIDIA-Linux-x86_64-387.34.run /tmp/NVIDIA-DRIVER.run
+RUN curl http://uk.download.nvidia.com/XFree86/Linux-x86_64/${NVIDIA_VERSION}/NVIDIA-Linux-x86_64-${NVIDIA_VERSION}.run -o /tmp/NVIDIA-DRIVER.run 
+# finally, /result ends up with the final data
+
 FROM tianon/steam
+
 # my system has nvidia, so yours should too!
 RUN sudo apt-get update && sudo apt-get install -yq kmod mesa-utils
 
@@ -6,10 +15,11 @@ RUN sudo apt-get update && sudo apt-get install -yq kmod mesa-utils
 # RUN sudo add-apt-repository ppa:graphics-drivers/ppa
 # RUN sudo apt-get install -y-q nvidia-driver-396
 
-# This works on my machine, you might want to upgrade the version though.
-ADD NVIDIA-Linux-x86_64-387.34.run /tmp/NVIDIA-DRIVER.run
-RUN sudo sh /tmp/NVIDIA-DRIVER.run -a -N --ui=none --no-kernel-module
-RUN sudo rm /tmp/NVIDIA-DRIVER.run
+# Check if nvidia version is defined
+COPY --from=intermediate /tmp/NVIDIA-DRIVER.run /tmp/NVIDIA-DRIVER.run
+
+RUN sudo sh /tmp/NVIDIA-DRIVER.run -a -N --install-libglvnd --ui=none --no-kernel-module && \
+    sudo rm /tmp/NVIDIA-DRIVER.run
 
 # Not sure if usefull with PULSE_SERVER
 COPY pulse-client.conf /etc/pulse/client.conf
